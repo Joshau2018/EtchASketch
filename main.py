@@ -50,40 +50,48 @@ class Etch:
 
 
     def __up_press(self):
-        pass
+        self.__up_pressed = True
 
     def __up_release(self):
-        pass
+        self.__up_pressed = False
 
     def __down_press(self):
-        pass
+        self.__down_pressed = True
 
     def __down_release(self):
-        pass
+        self.__down_pressed = False
 
     def __left_press(self):
-        pass
+        self.__left_pressed = True
 
     def __left_release(self):
-        pass
+        self.__left_released = False
 
     def __right_press(self):
-        pass
+        self.__right_pressed = True
 
     def __right_release(self):
-        pass
+        self.__right_released = False
 
     def __move(self):
         pass
 
     def __toggle_pen(self):
-        pass
+        if self.__t.isdown():
+            self.__t.penup()
+        else:
+            self.__t.pendown()
 
     def __clear(self):
-        pass
+        self.__t.clear()
 
     def __color(self):
-        pass
+        if self.__t.color()[0] == 'red':
+            self.__t.color('green')
+        elif self.__t.color()[0] == 'green':
+            self.__t.color('blue')
+        else:
+            self.__t.color('red')
 
     def __quit(self):
         self.__screen.bye()
