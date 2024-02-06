@@ -65,16 +65,25 @@ class Etch:
         self.__left_pressed = True
 
     def __left_release(self):
-        self.__left_released = False
+        self.__left_pressed = False
 
     def __right_press(self):
         self.__right_pressed = True
 
     def __right_release(self):
-        self.__right_released = False
+        self.__right_pressed = False
 
     def __move(self):
-        pass
+        if self.__up_pressed:
+            self.__t.forward(self.__distance)
+        elif self.__down_pressed:
+            self.__t.backward(self.__distance)
+        if self.__left_pressed:
+            self.__t.left(self.__turn)
+        elif self.__right_pressed:
+            self.__t.right(self.__turn)
+
+        self.__screen.ontimer(self.__move, 10)
 
     def __toggle_pen(self):
         if self.__t.isdown():
@@ -88,8 +97,10 @@ class Etch:
     def __color(self):
         if self.__t.color()[0] == 'red':
             self.__t.color('green')
+
         elif self.__t.color()[0] == 'green':
             self.__t.color('blue')
+
         else:
             self.__t.color('red')
 
