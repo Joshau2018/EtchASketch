@@ -25,6 +25,27 @@ class Etch:
         # register callback
         # a callback is a function that is called from the
         # operating system
+        # up
+        self.__screen.onkeypress(self.__up_press, 'Up')  # don't type key it's just for type
+        self.__screen.onkeyrelease(self.__up_release, 'Up')  # no ()
+        # Down
+        self.__screen.onkeypress(self.__down_press, 'Down')
+        self.__screen.onkeyrelease(self.__down_release, 'Down')
+        # left
+        self.__screen.onkeypress(self.__left_press, 'Left')
+        self.__screen.onkeyrelease(self.__left_release, 'Left')
+        # right
+        self.__screen.onkeypress(self.__right_press, 'Right')
+        self.__screen.onkeyrelease(self.__right_release, 'Right')
+        # toggle
+        self.__screen.onkey(self.__toggle_pen, 't')
+        # clear
+        self.__screen.onkey(self.__clear, 'c')
+        # color
+        self.__screen.onkey(self.__color, 'a')
+        # uit
+        self.__screen.onkey(self.__quit, 'q')
+        self.__screen.listen()
 
 
 
@@ -65,9 +86,10 @@ class Etch:
         pass
 
     def __quit(self):
-        pass
+        self.__screen.bye()
     def run(self):
-        pass
+        self.__move()
+        mainloop()  # creates game loop until loss or physically quit
 
 if __name__ == '__main__':
     draw = Etch()
